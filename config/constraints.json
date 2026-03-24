@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "description": "AutoDev 约束规则 - 定义哪些任务可以自动执行，哪些需要批准",
+  
+  "L1_auto": {
+    "description": "可自动执行，无需请示",
+    "tasks": [
+      "文档更新",
+      "注释补充",
+      "格式优化",
+      "小 Bug 修复",
+      "进度检查",
+      "状态汇报"
+    ]
+  },
+  
+  "L2_report": {
+    "description": "报备后执行，10 分钟内可叫停",
+    "tasks": [
+      "内容更新",
+      "依赖小版本升级",
+      "性能优化",
+      "测试用例添加"
+    ]
+  },
+  
+  "L3_ask": {
+    "description": "必须请示，等待批准",
+    "tasks": [
+      "新功能开发",
+      "架构变更",
+      "API 接入",
+      "数据库变更",
+      "Breaking Changes",
+      "费用产生"
+    ]
+  },
+  
+  "time_constraints": {
+    "active_hours": {
+      "start": "09:00",
+      "end": "22:00"
+    },
+    "timezone": "Asia/Shanghai",
+    "quiet_hours_action": "check_only"
+  },
+  
+  "daily_limits": {
+    "L1_max": 5,
+    "L2_max": 3,
+    "L3_max": -1
+  },
+  
+  "git_rules": {
+    "commit_message_format": "type: description",
+    "require_test": false,
+    "auto_push": true,
+    "protected_branches": ["main", "master"]
+  },
+  
+  "deployment_rules": {
+    "auto_deploy": true,
+    "require_approval_for_production": false,
+    "rollback_on_failure": true
+  }
+}

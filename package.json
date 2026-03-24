@@ -1,0 +1,28 @@
+{
+  "name": "autodev-system",
+  "version": "1.0.0",
+  "description": "多 Agent 分工全流程开发系统",
+  "main": "scripts/start.js",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "install": "bash install.sh",
+    "add-project": "node scripts/add-project.js",
+    "add-task": "node scripts/add-task.js",
+    "status": "node scripts/status.js",
+    "test": "node scripts/test.js"
+  },
+  "keywords": [
+    "autodev",
+    "agent",
+    "automation",
+    "github",
+    "vercel",
+    "openclaw"
+  ],
+  "author": "小雅",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/autodev-system.git"
+  }
+}
