@@ -29,7 +29,7 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/YOUR_USERNAME/autodev-system.git
+git clone https://github.com/nananyunxi/autodev-system.git
 cd autodev-system
 
 # 2. 运行安装脚本
@@ -40,6 +40,24 @@ node scripts/add-project.js your-project-name
 
 # 4. 启动系统
 node scripts/start.js
+```
+
+### 测试验证
+
+用 Java 面试项目测试：
+
+```bash
+# 1. 进入 AutoDev 目录
+cd autodev-system
+
+# 2. 启动系统
+node scripts/start.js
+
+# 3. 在 OpenClaw 中对小雅说
+"给 Java 面试网站加个搜索功能"
+
+# 4. 观察执行过程
+node scripts/status.js
 ```
 
 ### 配置说明
@@ -203,6 +221,21 @@ MIT License
 
 ---
 
+## 📝 更新日志
+
+### v1.0.0 (2026-03-25)
+
+- ✅ 初始版本发布
+- ✅ 5 个 Agent 提示词模板
+- ✅ 核心功能脚本
+- ✅ 安装和配置系统
+- ✅ 完整文档
+- ✅ GitHub 仓库：https://github.com/nananyunxi/autodev-system
+
+---
+
 **版本**: 1.0.0
 **创建时间**: 2026-03-25
+**更新时间**: 2026-03-25
 **维护者**: 小雅 (洛云的 AI 全能助手)
+**GitHub**: https://github.com/nananyunxi/autodev-system
