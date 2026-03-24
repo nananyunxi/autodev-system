@@ -21,7 +21,9 @@
     "deploy:report": "node scripts/report.js",
     "developer": "node scripts/developer-agent.js",
     "setup": "node scripts/setup-wizard.js",
-    "setup:generate": "node scripts/setup-wizard.js generate"
+    "setup:generate": "node scripts/setup-wizard.js generate",
+    "messaging": "node scripts/messaging-integration.js",
+    "auto-develop": "node scripts/auto-developer.js"
   },
   "keywords": [
     "autodev",
