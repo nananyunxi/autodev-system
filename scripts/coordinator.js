@@ -259,7 +259,16 @@ function handleUserRequest(taskDescription) {
 
 📊 任务级别：${taskLevel}
 📈 状态：执行中
+
+⏳ 开发完成后会自动生成部署报告并汇报
   `.trim(), 'success');
+  
+  console.log('');
+  console.log('💡 下一步:');
+  console.log('   1. 等待开发完成');
+  console.log('   2. 运行：npm run report "任务描述"');
+  console.log('   3. 系统会自动生成报告并汇报');
+  console.log('');
   
   return {
     status: 'executing',

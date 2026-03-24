@@ -182,6 +182,13 @@ ${report.github.success && report.vercel.results.verification?.success ? '无，
   
   console.log(summary);
   
+  // 提示用户如何发送报告
+  console.log('');
+  console.log('💡 提示:');
+  console.log('   在飞书中将以上汇报内容复制发送给${userNickname}');
+  console.log('   或者配置消息工具自动发送（需要集成 messaging 工具）');
+  console.log('');
+  
   return summary;
 }
 
