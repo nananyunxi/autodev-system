@@ -18,7 +18,8 @@
     "github:check": "node scripts/github-integration.js check",
     "vercel:check": "node scripts/vercel-integration.js check",
     "report": "node scripts/report.js",
-    "deploy:report": "node scripts/report.js"
+    "deploy:report": "node scripts/report.js",
+    "developer": "node scripts/developer-agent.js"
   },
   "keywords": [
     "autodev",

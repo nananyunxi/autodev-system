@@ -54,7 +54,7 @@ function loadAgentPrompt(agentType) {
 }
 
 // 创建子 Agent（使用 sessions_spawn）
-function spawnAgent(agentType, taskDescription, projectConfig) {
+async function spawnAgent(agentType, taskDescription, projectConfig) {
   console.log(`🤖 [OpenClaw] 创建 ${agentType} Agent...`);
   
   const prompt = loadAgentPrompt(agentType);
@@ -67,7 +67,7 @@ function spawnAgent(agentType, taskDescription, projectConfig) {
 ${taskDescription}
 
 ## 项目配置
-项目名称：${projectConfig.name}
+项目名称：${projectConfig.name || '未命名'}
 GitHub: ${projectConfig.github?.repo || '未配置'}
 Vercel: ${projectConfig.vercel?.project || '未配置'}
 
@@ -82,31 +82,65 @@ ${prompt.split('## 角色定位')[1]?.split('##')[0] || '执行任务'}
 开始执行任务！
   `.trim();
   
-  // 在实际 OpenClaw 环境中，这里会调用 sessions_spawn
-  // 当前使用模拟输出
-  
-  const sessionKey = `agent-${agentType}-${Date.now()}`;
-  
-  console.log(`   ✅ Session 创建：${sessionKey}`);
-  console.log(`   📝 任务指令：${taskInstruction.substring(0, 100)}...`);
-  
-  // 更新状态
-  const state = loadState();
-  state.sessions.push({
-    sessionKey,
-    agentType,
-    task: taskDescription,
-    createdAt: new Date().toISOString(),
-    status: 'created'
-  });
-  state.activeAgents.push(agentType);
-  saveState(state);
-  
-  return {
-    sessionKey,
-    agentType,
-    status: 'created'
-  };
+  try {
+    // 尝试调用 sessions_spawn（在 OpenClaw 环境中）
+    const { sessions_spawn } = require('openclaw');
+    
+    const session = await sessions_spawn({
+      task: taskInstruction,
+      agentId: 'default',
+      runtime: 'subagent',
+      mode: 'run',
+      timeoutSeconds: 600
+    });
+    
+    const sessionKey = session.sessionKey || `agent-${agentType}-${Date.now()}`;
+    
+    console.log(`   ✅ Session 创建：${sessionKey}`);
+    
+    // 更新状态
+    const state = loadState();
+    state.sessions.push({
+      sessionKey,
+      agentType,
+      task: taskDescription,
+      createdAt: new Date().toISOString(),
+      status: 'spawned',
+      session: session
+    });
+    state.activeAgents.push(agentType);
+    saveState(state);
+    
+    return {
+      sessionKey,
+      agentType,
+      status: 'spawned',
+      session
+    };
+  } catch (error) {
+    // 非 OpenClaw 环境，使用模拟模式
+    console.log(`   ⚠️  非 OpenClaw 环境，使用模拟模式`);
+    
+    const sessionKey = `agent-${agentType}-${Date.now()}`;
+    
+    const state = loadState();
+    state.sessions.push({
+      sessionKey,
+      agentType,
+      task: taskDescription,
+      createdAt: new Date().toISOString(),
+      status: 'simulated'
+    });
+    state.activeAgents.push(agentType);
+    saveState(state);
+    
+    return {
+      sessionKey,
+      agentType,
+      status: 'simulated',
+      note: '模拟模式，实际执行需要 OpenClaw 环境'
+    };
+  }
 }
 
 // 发送任务给子 Agent（使用 sessions_send）
