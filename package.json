@@ -19,7 +19,9 @@
     "vercel:check": "node scripts/vercel-integration.js check",
     "report": "node scripts/report.js",
     "deploy:report": "node scripts/report.js",
-    "developer": "node scripts/developer-agent.js"
+    "developer": "node scripts/developer-agent.js",
+    "setup": "node scripts/setup-wizard.js",
+    "setup:generate": "node scripts/setup-wizard.js generate"
   },
   "keywords": [
     "autodev",

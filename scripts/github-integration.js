@@ -50,18 +50,28 @@ function checkGitHubLogin() {
     return { success: true, ...state };
   } catch (error) {
     console.log(`   ❌ GitHub 未登录`);
-    console.log(`   💡 请配置 Git 用户信息:`);
-    console.log(`      git config --global user.name "Your Name"`);
-    console.log(`      git config --global user.email "your@email.com"`);
+    console.log('');
+    console.log('   💡 需要配置 Git 用户信息:');
+    console.log('      git config --global user.name "Your Name"');
+    console.log('      git config --global user.email "your@email.com"');
+    console.log('');
+    console.log('   📝 GitHub Token 说明:');
+    console.log('      作用：用于 GitHub API 调用和 HTTPS 推送');
+    console.log('      场景：自动创建 PR、Issue、获取仓库信息');
+    console.log('      获取：https://github.com/settings/tokens');
+    console.log('      配置：export GITHUB_TOKEN="your_token"');
+    console.log('      可选：已有 SSH 密钥可不配置');
+    console.log('');
     
     const state = {
       loggedIn: false,
       error: error.message,
+      needsSetup: true,
       checkedAt: new Date().toISOString()
     };
     fs.writeFileSync(GITHUB_STATE, JSON.stringify(state, null, 2));
     
-    return { success: false, ...state };
+    return { success: false, ...state, needsSetup: true };
   }
 }
 

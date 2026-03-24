@@ -34,38 +34,47 @@ function loadProjectConfig() {
 function checkVercelLogin() {
   console.log('🔍 检查 Vercel 登录状态...');
   
-  try {
-    // 检查是否有 vercel token
-    const token = process.env.VERCEL_TOKEN;
+  const token = process.env.VERCEL_TOKEN;
+  
+  if (token) {
+    console.log(`   ✅ Vercel 已登录 (使用 VERCEL_TOKEN)`);
     
-    if (token) {
-      console.log(`   ✅ Vercel 已登录 (使用 VERCEL_TOKEN)`);
-      
-      const state = {
-        loggedIn: true,
-        method: 'token',
-        checkedAt: new Date().toISOString()
-      };
-      fs.writeFileSync(VERCEL_STATE, JSON.stringify(state, null, 2));
-      
-      return { success: true, ...state };
-    } else {
-      console.log(`   ⚠️  未检测到 VERCEL_TOKEN`);
-      console.log(`   💡 可以通过以下方式配置:`);
-      console.log(`      export VERCEL_TOKEN="your_token"`);
-      
-      const state = {
-        loggedIn: false,
-        method: 'none',
-        checkedAt: new Date().toISOString()
-      };
-      fs.writeFileSync(VERCEL_STATE, JSON.stringify(state, null, 2));
-      
-      return { success: false, ...state };
-    }
-  } catch (error) {
-    console.log(`   ❌ 检查失败：${error.message}`);
-    return { success: false, error: error.message };
+    const state = {
+      loggedIn: true,
+      method: 'token',
+      checkedAt: new Date().toISOString()
+    };
+    fs.writeFileSync(VERCEL_STATE, JSON.stringify(state, null, 2));
+    
+    return { success: true, ...state };
+  } else {
+    console.log(`   ⚠️  未检测到 VERCEL_TOKEN`);
+    console.log('');
+    console.log('   📝 Vercel Token 说明:');
+    console.log('      作用：用于 Vercel API 调用，获取详细部署状态和日志');
+    console.log('      场景：查看部署详情、日志分析、自动验证功能');
+    console.log('      获取：https://vercel.com/account/tokens');
+    console.log('      配置：export VERCEL_TOKEN="your_token"');
+    console.log('      可选：不配置也能自动部署，只是无法获取详细状态');
+    console.log('');
+    console.log('   💡 获取步骤:');
+    console.log('      1. 访问 https://vercel.com/account/tokens');
+    console.log('      2. 登录 Vercel 账号');
+    console.log('      3. 点击 "Create Token"');
+    console.log('      4. 选择权限（建议 Full Access）');
+    console.log('      5. 复制生成的 Token');
+    console.log('      6. 运行：export VERCEL_TOKEN="你的 token"');
+    console.log('');
+    
+    const state = {
+      loggedIn: false,
+      method: 'none',
+      needsSetup: true,
+      checkedAt: new Date().toISOString()
+    };
+    fs.writeFileSync(VERCEL_STATE, JSON.stringify(state, null, 2));
+    
+    return { success: false, ...state, needsSetup: true };
   }
 }
 
