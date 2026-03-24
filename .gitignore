@@ -1,6 +1,21 @@
-# 密钥和配置
+# 密钥和配置（敏感信息，不提交）
 config/secrets.json
 config/*.local.json
+config/*.private.json
+
+# 状态文件
+memory/*.json
+memory/state.json
+memory/agents-state.json
+memory/github-state.json
+memory/vercel-state.json
+memory/coordinator-state.json
+memory/openclaw-state.json
+memory/reports/
+
+# 临时文件
+*.tmp
+*.log
 
 # 状态文件
 memory/*.json
