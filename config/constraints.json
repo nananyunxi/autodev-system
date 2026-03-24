@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "description": "AutoDev 约束规则 - 定义哪些任务可以自动执行，哪些需要批准",
+  "note": "称呼可在 project.json 中自定义，默认用户=用户，助手=助手",
   
   "L1_auto": {
     "description": "可自动执行，无需请示",

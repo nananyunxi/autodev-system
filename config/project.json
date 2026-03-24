@@ -1,0 +1,19 @@
+{
+  "name": "your-project-name",
+  "github": {
+    "repo": "username/repo",
+    "branch": "main"
+  },
+  "vercel": {
+    "project": "your-project"
+  },
+  "nicknames": {
+    "user": "用户",
+    "assistant": "助手"
+  },
+  "constraints": {
+    "max_tasks_per_day": 5,
+    "require_approval_for": ["api_integration", "breaking_changes"]
+  },
+  "createdAt": "2026-03-25T01:49:00+08:00"
+}

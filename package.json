@@ -9,7 +9,11 @@
     "add-project": "node scripts/add-project.js",
     "add-task": "node scripts/add-task.js",
     "status": "node scripts/status.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "agents:init": "node scripts/manage-agents.js init",
+    "agents:create": "node scripts/manage-agents.js create",
+    "agents:list": "node scripts/manage-agents.js list",
+    "agents:report": "node scripts/manage-agents.js report"
   },
   "keywords": [
     "autodev",

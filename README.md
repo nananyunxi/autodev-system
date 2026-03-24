@@ -237,5 +237,22 @@ MIT License
 **版本**: 1.0.0
 **创建时间**: 2026-03-25
 **更新时间**: 2026-03-25
-**维护者**: 小雅 (洛云的 AI 全能助手)
+**维护者**: AutoDev Team
 **GitHub**: https://github.com/nananyunxi/autodev-system
+
+---
+
+## 👥 自定义称呼
+
+系统支持自定义称呼，在 `config/project.json` 中配置：
+
+```json
+{
+  "userNickname": "老大",      // 对用户的称呼
+  "assistantNickname": "小雅"   // AI 助手的名字
+}
+```
+
+默认值：
+- `userNickname`: "用户"
+- `assistantNickname`: "助手"
