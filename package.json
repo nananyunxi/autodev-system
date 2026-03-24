@@ -14,7 +14,11 @@
     "agents:create": "node scripts/manage-agents.js create",
     "agents:list": "node scripts/manage-agents.js list",
     "agents:report": "node scripts/manage-agents.js report",
-    "coordinator": "node scripts/coordinator.js"
+    "coordinator": "node scripts/coordinator.js",
+    "github:check": "node scripts/github-integration.js check",
+    "vercel:check": "node scripts/vercel-integration.js check",
+    "report": "node scripts/report.js",
+    "deploy:report": "node scripts/report.js"
   },
   "keywords": [
     "autodev",
